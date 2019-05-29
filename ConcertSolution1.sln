@@ -1,0 +1,44 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.168
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Deserializers", "Deserializers", "{294B5D83-EFC7-4FC6-832B-8413216A25F3}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Transformers", "Transformers", "{5B5B879C-381C-472A-88F7-BB202D5A8D3B}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{AD32B2D3-38A4-44B4-94BA-B3D77095905E}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Deployment", "Deployment", "{4B4DFA18-9DFC-49D7-A6A7-D98DF2906A30}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConcertDebugConsole", "Deployment\ConcertDebugConsole.csproj", "{E9FFD09D-B5B9-4F00-A9CB-33AAA3F2DFF9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TransformerProj1", "TransformerProj1\TransformerProj1.csproj", "{3E47E84D-C8F8-4243-BF77-703388D499DF}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E9FFD09D-B5B9-4F00-A9CB-33AAA3F2DFF9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E9FFD09D-B5B9-4F00-A9CB-33AAA3F2DFF9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E9FFD09D-B5B9-4F00-A9CB-33AAA3F2DFF9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E9FFD09D-B5B9-4F00-A9CB-33AAA3F2DFF9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3E47E84D-C8F8-4243-BF77-703388D499DF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3E47E84D-C8F8-4243-BF77-703388D499DF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3E47E84D-C8F8-4243-BF77-703388D499DF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3E47E84D-C8F8-4243-BF77-703388D499DF}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{E9FFD09D-B5B9-4F00-A9CB-33AAA3F2DFF9} = {4B4DFA18-9DFC-49D7-A6A7-D98DF2906A30}
+		{3E47E84D-C8F8-4243-BF77-703388D499DF} = {5B5B879C-381C-472A-88F7-BB202D5A8D3B}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		EnterpriseLibraryConfigurationToolBinariesPathV6 = packages\EnterpriseLibrary.Common.6.0.1304.0\lib\NET45;packages\EnterpriseLibrary.ExceptionHandling.6.0.1304.0\lib\NET45;packages\EnterpriseLibrary.Logging.6.0.1304.0\lib\NET45;packages\EnterpriseLibrary.ExceptionHandling.Logging.6.0.1304.0\lib\NET45
+		SolutionGuid = {7EA2A215-4016-4AE8-A331-4F489A4C5DD0}
+	EndGlobalSection
+EndGlobal

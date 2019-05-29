@@ -1,0 +1,282 @@
+{
+  "domainId": "20f97715-7353-462e-b5f0-04038e175702",
+  "messaging": { "messagingConnStr": "EnableLargeMessageSending=false;EnableEncryption=false;ServiceBusType=SBWS;ServiceBusQueueName=QUEUE-NAME;ServiceBusNamespace=ConcertSBNamespace;QueueNameWithUri=\"ServiceBusMessaging://QUEUE-NAME/\";ReceiveMode=ReceiveAndDelete;ServiceBusConnectionstring=\"Endpoint=sb://guangdesktop.finivation.com/ConcertSBNamespace;StsEndpoint=https://guangdesktop.finivation.com:9355/ConcertSBNamespace;RuntimePort=9354;ManagementPort=9355;SharedAccessKeyName=RootManageSharedAccessKey;SharedAccessKey=Aboevhdws5wrnTFDlmKQ3FieKwo9lUUJr//EKiP8Zm8=\"" },
+  "machine": {
+    "hostName": "MODESTO",
+    "totalRam": "15.88GB",
+    "is64Bit": "true",
+    "osNameVersion": "BUELLTON",
+    "description": "Intel(R) Dual Band Wireless-N 7260",
+    "agent": {
+      "agentId": "3265ce09-a8d8-42c7-9f3e-ce54f39ff44c",
+      "runAsAgentId": "3265CE09-A8D8-42C7-9F3E-CE54F39FF44C",
+      "routing": {
+        "domainId": "20f97715-7353-462e-b5f0-04038e175702",
+        "agentId": "3265ce09-a8d8-42c7-9f3e-ce54f39ff44c",
+        "serviceId": "00000000-0000-0000-0000-000000000000",
+        "name": "Routing Service",
+        "inProcess": "true",
+        "routes": "<Routes xmlns=\"http://finivation.com/concert/RoutingScript.xsd\"><Route> <From ServiceName=\"HttpListenerService\" /> <Transform AssemblyPath=\"TransformerProj1.dll\" ClassName=\"TransformerProj1.Transformer1\" Name=\"MyTransformer\" /><To ServiceName=\"HttpListenerService\" /> </Route></Routes>",
+        "messaging": { "queueConnStr": "" },
+        "serviceType": {
+          "name": "Routing Service",
+          "assembly": "Finivation.Concert.RoutingService.dll",
+          "class": "Finivation.Concert.Routing.RoutingService"
+        },
+        "transformers": {
+          "CUFX.SymExchangeTransform": {
+            "SymExTransformerOptions": {
+              "HoldQueryString": "Type = 3",
+              "PreferenceTrackingRecordType": "71"
+            },
+            "Basic": {
+              "AdminPassword": "1EntServBus!",
+              "DeviceType": "ESB",
+              "DeviceNumber": "20031"
+            }
+          },
+          "CUFX.SQLTransform": {
+            "Basic": { "xxx": "yyy" },
+            "SQLTransformerOptions": {
+              "eStatementImageSP": "SDCCU_GetEstatementImage",
+              "eStatementListSP": "SDCCU_GetEstatementMetaData",
+              "xxx": "yyy"
+            }
+          },
+          "SymExchange.CUFXTransform": {
+            "Basic": {
+              "DeviceNumber": "20031",
+              "AdminPassword": "1EntServBus!",
+              "DeviceType": "ESB"
+            },
+            "SymExTransformerOptions": {
+              "PreferenceTrackingRecordType": "71",
+              "HoldQueryString": "Type = 3"
+            }
+          },
+          "CUFX.RemoteDepoistTransformer": {
+            "AccountSamlAssertionConfig": {
+              "serialNumber": "",
+              "processControl": "14",
+              "routingNumber": "322281617"
+            },
+            "UserAssertionConfig": {
+              "captureChannel": "SC MOBILE",
+              "phoneKey": "8008636445",
+              "orgName": "522281617"
+            },
+            "ProfileDataSamlAssertionConfig": {
+              "customerChannelName": "SC MOBILE",
+              "workTypeChannelName": "SC MOBILE",
+              "customerSequenceNumberPrefix": "0888",
+              "role": "MobileUser",
+              "customerDailyDepositCountThreshold": "10",
+              "fiNumber": "522281617",
+              "annotateTemplateName": "Mobile VE",
+              "customerDailyAmountThreshold": "5000",
+              "dailyDepositThreshold": "5000",
+              "workTypeNumber": "590",
+              "depositThreshold": "5000"
+            }
+          }
+        },
+        "epServiceIds2Names": {
+          "093a5835-2abd-453b-9dc9-6bcb1b54f613": "SymExchange-24",
+          "92076122-8b0a-4efe-a3ed-3284570d3ede": "ImagingHttpSvc-24",
+          "1f1a81d5-0017-4663-a48d-a97dfadaf60f": "SCOSoapSvc-24",
+          "d1257cd2-c40e-4e2a-ab91-620d751882a5": "CUFX.SymExchangeTransform",
+          "cbda23b2-09d6-45df-99ae-6ca25b02c89f": "EmployeeDBSvc",
+          "d5d59e24-68d4-445a-9c15-2ef808c81a62": "HRSystemFileSvc",
+          "e0ee0e7f-a1e3-448f-b33c-27b993c24db3": "CUFX.SQLTransform",
+          "f3f2e7f8-97ff-4fab-8242-f8c901b66a14": "SymExchange.CUFXTransform",
+          "9f722b7c-d96c-4f05-9f06-efedc1dcea2d": "FileMonitorSvc",
+          "a9561c66-c711-40e5-8647-4f8679572450": "FileSvc",
+          "2ed106fd-1d39-4250-97cb-b179cf00c70e": "EStatement-Database-Service-24",
+          "87e833e5-61a4-44c8-9637-486a65c5de69": "ConnectionsFileSvc",
+          "a0701aa2-3d2e-4123-8233-55f4dc20e7ce": "CUFX.RemoteDepoistTransformer",
+          "aa904501-defd-4f54-8e74-39817bd82040": "XDISoapSvc-24",
+          "e114849f-5ba4-4b55-a3e5-7389951f491d": "HttpListenerService",
+          "46418fac-3ab6-4b2c-9b2c-ce05f050cfd8": "HttpService"
+        }
+      },
+      "endpointServices": [
+        {
+          "domainId": "20f97715-7353-462e-b5f0-04038e175702",
+          "agentId": "3265ce09-a8d8-42c7-9f3e-ce54f39ff44c",
+          "serviceId": "46418fac-3ab6-4b2c-9b2c-ce05f050cfd8",
+          "name": "HttpService",
+          "inProcess": "true",
+          "contentType": "text/plain",
+          "traceFileDirectory": "C:\\Logs\\Concert.Endpoint.HttpTracing",
+          "serviceType": {
+            "name": "Http Service",
+            "assembly": "Finivation.Concert.Service.HttpSvc.dll",
+            "class": "Finivation.Concert.Service.HttpSvc"
+          },
+          "messaging": {
+            "recvQueueConnStr": "",
+            "sendQueueConnStr": ""
+          },
+          "parameters": {
+            "HttpSvcConfiguration": [
+              {
+                "type": "Dictionary",
+                "name": "Headers",
+                "values": {
+                  "H1": "def1",
+                  "H2": "def2"
+                }
+              },
+              {
+                "type": "Boolean",
+                "name": "EnableMessageTracing ",
+                "value": "true"
+              },
+              {
+                "type": "String",
+                "name": "MessageTracingFormat",
+                "value": "Text"
+              },
+              {
+                "type": "String",
+                "name": "RemoteURL",
+                "value": "https://test6.q-cash.com:4443/wsecu/api/LoanApplication/GetLoanApplicationData//"
+              }
+            ]
+          }
+        },
+        {
+          "domainId": "20f97715-7353-462e-b5f0-04038e175702",
+          "agentId": "3265ce09-a8d8-42c7-9f3e-ce54f39ff44c",
+          "serviceId": "e114849f-5ba4-4b55-a3e5-7389951f491d",
+          "name": "HttpListenerService",
+          "inProcess": "true",
+          "contentType": "text/plain",
+          "traceFileDirectory": "C:\\Logs\\Concert.Endpoint.Tracing",
+          "serviceType": {
+            "name": "Http Listener Service",
+            "assembly": "Finivation.Concert.Service.HttpListenerSvc.dll",
+            "class": "Finivation.Concert.Service.HttpListenerSvc"
+          },
+          "messaging": {
+            "recvQueueConnStr": "",
+            "sendQueueConnStr": ""
+          },
+          "parameters": {
+            "HttpListenerSvcConfiguration": [
+              {
+                "type": "String",
+                "name": "ListenerUrl",
+                "value": "http://localhost:8803/"
+              },
+              {
+                "type": "Boolean",
+                "name": "EnableMessageTracing ",
+                "value": "true"
+              },
+              {
+                "type": "String",
+                "name": "MessageTracingFormat",
+                "value": "Text"
+              }
+            ]
+          }
+        },
+        {
+          "domainId": "20f97715-7353-462e-b5f0-04038e175702",
+          "agentId": "3265ce09-a8d8-42c7-9f3e-ce54f39ff44c",
+          "serviceId": "9f722b7c-d96c-4f05-9f06-efedc1dcea2d",
+          "name": "FileMonitorSvc",
+          "inProcess": "true",
+          "contentType": "text/plain",
+          "traceFileDirectory": "C:\\Logs\\Concert.Endpoint.Tracing",
+          "serviceType": {
+            "name": "Folder Monitor Service",
+            "assembly": "Finivation.Concert.Service.FolderMonitoringService.dll",
+            "class": "Finivation.Concert.Service.FolderMonitoringService"
+          },
+          "messaging": {
+            "recvQueueConnStr": "",
+            "sendQueueConnStr": ""
+          },
+          "parameters": {
+            "FolderMonitoringServiceConfiguration": [
+              {
+                "type": "String",
+                "name": "ArchiveFile",
+                "value": "false"
+              },
+              {
+                "type": "String",
+                "name": "WatchedFolderFilter",
+                "value": "*.json"
+              },
+              {
+                "type": "Boolean",
+                "name": "StartUpCheck",
+                "value": "true"
+              },
+              {
+                "type": "String",
+                "name": "WatchedFolder",
+                "value": "C:\\Logs\\Files\\Monitored"
+              }
+            ]
+          }
+        },
+        {
+          "domainId": "20f97715-7353-462e-b5f0-04038e175702",
+          "agentId": "3265ce09-a8d8-42c7-9f3e-ce54f39ff44c",
+          "serviceId": "a9561c66-c711-40e5-8647-4f8679572450",
+          "name": "FileSvc",
+          "inProcess": "true",
+          "contentType": "text/plain",
+          "traceFileDirectory": "C:\\Logs\\Concert.Endpoint.Tracing",
+          "serviceType": {
+            "name": "FileSvc Service",
+            "assembly": "Finivation.Concert.Service.FileSvc.dll",
+            "class": "Finivation.Concert.Service.FileSvc"
+          },
+          "messaging": {
+            "recvQueueConnStr": "",
+            "sendQueueConnStr": ""
+          },
+          "parameters": {
+            "FileServiceConfiguration": [
+              {
+                "type": "Boolean",
+                "name": "OverwriteFile",
+                "value": "false"
+              },
+              {
+                "type": "String",
+                "name": "FileNameFormat",
+                "value": "REL#.ALT"
+              },
+              {
+                "type": "String",
+                "name": "Header",
+                "value": ""
+              },
+              {
+                "type": "String",
+                "name": "Tailer",
+                "value": ""
+              },
+              {
+                "type": "String",
+                "name": "DestinationPath",
+                "value": "C:\\Logs\\Files\\Dest"
+              },
+              {
+                "type": "String",
+                "name": "DestinationFile",
+                "value": "C:\\Logs\\Files\\connections\\all.txt"
+              }
+            ]
+          }
+        }
+      ]
+    }
+  }
+}

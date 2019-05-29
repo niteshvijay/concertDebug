@@ -1,0 +1,408 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="RoutingScript"
+    targetNamespace="http://finivation.com/concert/RoutingScript.xsd"
+    elementFormDefault="qualified"
+    xmlns="http://finivation.com/concert/RoutingScript.xsd"
+    xmlns:mstns="http://finivation.com/concert/RoutingScript.xsd"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+>
+  <xs:element name="Routes" type="RoutesType"/>  
+  <xs:complexType name="RoutesType">
+    <xs:choice maxOccurs="unbounded">
+      <xs:element ref="Route" minOccurs="0" maxOccurs="unbounded"/>
+      <xs:element ref="OnStart" minOccurs="0" maxOccurs="unbounded"/>
+      <xs:element ref="OnStop" minOccurs="0" maxOccurs="unbounded"/>
+      <xs:element ref="OnTimer" minOccurs="0" maxOccurs="unbounded"/>
+      <xs:element ref="WorkUnit" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:choice>
+  </xs:complexType>
+  
+  <xs:complexType name="RouteBaseType" abstract="true">
+    <xs:complexContent>
+      <xs:extension base="StepGroupType">
+        <xs:attribute name="RoutingGroupName" type="xs:string" use="optional"/>
+        <xs:attribute name="ContinueLoadingOnError" type="xs:boolean" use="optional"/>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:element name="Route" type="RouteType"/>
+  <xs:complexType name="RouteType">
+    <xs:complexContent>
+      <xs:extension base="RouteBaseType">
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:element name="OnStart" type="OnStartType"/>
+  <xs:complexType name="OnStartType">
+    <xs:complexContent>
+      <xs:extension base="RouteBaseType">
+        <xs:attribute name="StartInNumberOfMilliseconds" type="xs:int" use="optional"/>
+        <xs:attribute name="StartInNumberOfSeconds" type="xs:int" use="optional"/>
+        <xs:attribute name="StartInNumberOfMinutes" type="xs:int" use="optional"/>
+        <xs:attribute name="StartInNumberOfHours" type="xs:int" use="optional"/>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  
+  <xs:element name="OnStop" type="OnStopType"/>
+  <xs:complexType name="OnStopType">
+    <xs:complexContent>
+      <xs:extension base="RouteBaseType" />
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:element name="OnTimer" type="OnTimerType"/>
+  <xs:complexType name="OnTimerType">
+    <xs:complexContent>
+      <xs:extension base="RouteBaseType">
+        <xs:attribute name="StartInNumberOfMilliseconds" type="xs:int" use="optional"/>
+        <xs:attribute name="StartInNumberOfSeconds" type="xs:int" use="optional"/>
+        <xs:attribute name="StartInNumberOfMinutes" type="xs:int" use="optional"/>
+        <xs:attribute name="StartInNumberOfHours" type="xs:int" use="optional"/>
+        <xs:attribute name="RepeatTimes" type="xs:int" use="optional"/>
+        <xs:attribute name="RepeatEveryMilliseconds" type="xs:int" use="optional"/>
+        <xs:attribute name="RepeatEverySeconds" type="xs:int" use="optional"/>
+        <xs:attribute name="RepeatEveryMinutes" type="xs:int" use="optional"/>
+        <xs:attribute name="RepeatEveryHours" type="xs:int" use="optional"/>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="StepGroupType">
+    <xs:choice minOccurs="0" maxOccurs="unbounded">
+      <xs:element ref="From"/>
+      <xs:element ref="Log"/>
+      <xs:element ref="Transform"/>
+      <xs:element ref="To"/>
+      <xs:element ref="DeserializeAndGetInfo"/>
+      <xs:element ref="Conditional"/>
+      <xs:element ref="Assertion"/>      
+      <xs:element ref="Switch"/>
+      <xs:element ref="Custom"/>
+      <xs:element ref="Serialize"/>
+      <xs:element ref="OnTimeout"/>
+      <xs:element ref="OnMessagesetTimeout"/>
+      <xs:element ref="Exit"/>
+      <xs:element ref="Break"/>      
+      <xs:element ref="AddRoutingField"/>
+      <xs:element ref="SendAndReceive"/>
+      <xs:element ref="SendAndReceiveInParallel"/>
+      <xs:element ref="Match"/>
+    </xs:choice>
+    <xs:attribute name="Name" type="xs:string" use="optional"/>
+  </xs:complexType>
+  
+  <xs:complexType name="StepBaseType" abstract="true">
+    <xs:sequence>
+      <xs:element name="Config" type="xs:string" minOccurs="0" maxOccurs="unbounded" />
+    </xs:sequence>
+    <xs:attribute name="LogLevel" type="xs:string" use="optional"/>
+    <xs:attribute name="Name" type="xs:string" use="optional"/>
+    <xs:attribute name="ContinueWhenExecutionFail" type="xs:boolean" use="optional"/>
+  </xs:complexType>
+ 
+  <xs:element name="From" type="FromStepType"/>
+  <xs:complexType name="FromStepType">
+    <xs:complexContent>
+      <xs:extension base="StepBaseType">
+        <xs:attribute name="ServiceName" type="xs:string" use="optional"/>
+        <xs:attribute name="ServiceId" type="xs:string" use="optional"/>
+        <xs:attribute name="QueueName" type="xs:string" use="optional"/>
+        <xs:attribute name="NeedQueueLevelMessageCorrelation" type="xs:boolean" use="optional"/>
+        <xs:attribute name="KeepIncomingMessageCreateTime" type="xs:boolean" use="optional"/>
+        <xs:attribute name="MessageResetTimeoutInMillisec" type="xs:int" use="optional"/>
+        <xs:attribute name="WithoutCMessageWrapper" type="xs:boolean" use="optional"/>
+        <xs:attribute name="LogAsFromService" type="xs:string" use="optional"/>
+        <xs:attribute name="IncludeHttpHeadersAndQstring" type="xs:boolean" use="optional"/>
+        <xs:attribute name="MessagesetTimeoutInMilliseconds" type="xs:int" use="optional"/>
+        <xs:attribute name="MessagesetTimeoutReason" type="xs:string" use="optional"/>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  
+  <xs:element name="Transform" type="TransformStepType"/>
+  <xs:complexType name="TransformStepType">
+    <xs:complexContent>
+      <xs:extension base="StepBaseType">
+        <xs:attribute name="AssemblyPath" type="xs:string" use="optional"/>
+        <xs:attribute name="ClassName" type="xs:string" use="optional"/>        
+        <xs:attribute name="AddToMatchingQueue" type="xs:boolean" use="optional"/>
+        <xs:attribute name="WriteItemMatchPool" type="xs:string" use="optional"/>
+        <xs:attribute name="DisableTranLogging" type="xs:boolean" use="optional"/>
+        <xs:attribute name="RequireTraceNumberForService" type="xs:string" use="optional"/>
+        <xs:attribute name="Passthrough" type="xs:boolean" use="optional"/>
+        <xs:attribute name="LogAsService" type="xs:string" use="optional"/>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  
+  <xs:element name="To" type="ToStepType"/>
+  <xs:complexType name="ToStepType">
+    <xs:complexContent>
+      <xs:extension base="StepBaseType">
+        <xs:attribute name="ServiceName" type="xs:string" use="optional"/>
+        <xs:attribute name="ServiceId" type="xs:string" use="optional"/>
+        <xs:attribute name="QueueName" type="xs:string" use="optional"/>
+        <xs:attribute name="AddToMatchingQueue" type="xs:boolean" use="optional"/>
+        <xs:attribute name="WriteItemMatchPool" type="xs:string" use="optional"/>
+        <xs:attribute name="DisableTranLogging" type="xs:boolean" use="optional"/>
+        <xs:attribute name="NeedQueueLevelMessageCorrelation" type="xs:boolean" use="optional"/>
+        <xs:attribute name="RequireSession" type="xs:boolean" use="optional"/>   
+        <xs:attribute name="LogAsToService" type="xs:string" use="optional"/>
+        <xs:attribute name="WithoutCMessageWrapper" type="xs:boolean" use="optional"/>
+        <xs:attribute name="UseQueuingSystemSerialization" type="xs:boolean" use="optional"/>
+        <xs:attribute name="GenerateMessageCorrelationId" type="xs:boolean" use="optional"/>
+        <xs:attribute name="TimeoutInMilliseconds" type="xs:int" use="optional"/>
+        <xs:attribute name="TimeoutRaiseEvent" type="xs:string" use="optional"/>
+        <xs:attribute name="ClearMessagesetTimeout" type="xs:boolean" use="optional"/>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:element name="SendAndReceive" type="SendAndReceiveStepType"/>
+  <xs:complexType name="SendAndReceiveStepType">
+    <xs:complexContent>
+      <xs:extension base="StepBaseType">
+        <xs:attribute name="ServiceName" type="xs:string" use="optional"/>
+        <xs:attribute name="ServiceId" type="xs:string" use="optional"/>                
+        <xs:attribute name="DisableTranLogging" type="xs:boolean" use="optional"/>        
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:element name="SendAndReceiveInParallel" type="SendAndReceiveInParallelStepType"/>
+  <xs:complexType name="SendAndReceiveInParallelStepType">
+    <xs:complexContent>
+      <xs:extension base="StepBaseType">
+        <xs:attribute name="ServiceName" type="xs:string" use="optional"/>
+        <xs:attribute name="ServiceId" type="xs:string" use="optional"/>
+        <xs:attribute name="DisableTranLogging" type="xs:boolean" use="optional"/>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  
+  <xs:element name="Log" type="LogStepType"/>
+  <xs:complexType name="LogStepType">
+    <xs:complexContent>
+      <xs:extension base="StepBaseType">
+        <xs:sequence>
+          <xs:element name="Predicate"  type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
+          <xs:element name="Var" minOccurs="0" maxOccurs="unbounded">
+           <xs:complexType>
+            <xs:simpleContent>
+            <xs:extension base="xs:string">
+             <xs:attribute name="Name" type="xs:string" />
+            </xs:extension>
+            </xs:simpleContent>
+           </xs:complexType>
+          </xs:element>
+        </xs:sequence>
+        <xs:attribute name="MustFinish" type="xs:boolean" use="optional"/>
+        <xs:attribute name="TraceLog" type="xs:boolean" use="optional"/>
+        <xs:attribute name="TraceMessage" type="xs:string" use="optional"/>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+
+  <xs:element name="DeserializeAndGetInfo" type="DeserializeAndGetInfoStepType"/>
+  <xs:complexType name="DeserializeAndGetInfoStepType">
+    <xs:complexContent>
+      <xs:extension base="StepBaseType">
+        <xs:attribute name="AssemblyPath" type="xs:string" use="required"/>
+        <xs:attribute name="ClassName" type="xs:string" use="required"/>
+        
+        <xs:attribute name="ValidateData" type="xs:boolean" use="optional"/>
+        <xs:attribute name="AddToMatchingQueue" type="xs:boolean" use="optional"/>
+        <xs:attribute name="WriteItemMatchPool" type="xs:string" use="optional"/>
+        <xs:attribute name="DoMatching" type="xs:boolean" use="optional"/>
+        <xs:attribute name="ReadItemMatchPool" type="xs:string" use="optional"/>
+        <xs:attribute name="DoTimeoutMessage" type="xs:boolean" use="optional"/>
+        <xs:attribute name="DisableTranLogging" type="xs:boolean" use="optional"/>        
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:element name="Match" type="MatchStepType"/>
+  <xs:complexType name="MatchStepType">
+    <xs:complexContent>
+      <xs:extension base="StepBaseType">
+        <xs:attribute name="ReadItemMatchPool" type="xs:string" use="optional"/>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  
+  <xs:element name="Conditional" type="ConditionalStepType"/>
+  <xs:complexType name="ConditionalStepType">
+    <xs:complexContent>
+      <xs:extension base="StepBaseType">
+        <xs:sequence>
+          <xs:element name="CTrue" type="StepGroupType" minOccurs="0" maxOccurs="1" />
+          <xs:element name="CFalse" type="StepGroupType" minOccurs="0" maxOccurs="1" />
+        </xs:sequence>
+        <xs:attribute name="Predicate" type="xs:string" use="required"/>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  
+  <xs:element name="Assertion" type="AssertionStepType"/>
+  <xs:annotation>
+    <xs:documentation>Assertion replaces Conditioonal construct.  Intended as a 1-1 replacement</xs:documentation> 
+  </xs:annotation>
+  <xs:complexType name="AssertionStepType">
+    <xs:complexContent>
+      <xs:extension base="StepBaseType">
+        <xs:sequence>
+          <xs:element name="True" type="StepGroupType" minOccurs="0" maxOccurs="1" />
+          <xs:element name="False" type="StepGroupType" minOccurs="0" maxOccurs="1" />
+        </xs:sequence>
+        <xs:attribute name="Predicate" type="xs:string" use="required"/>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:element name="Case" type="CaseSubStepType"/>
+  <xs:complexType name="CaseSubStepType">
+    <xs:complexContent>
+      <xs:extension base="StepGroupType">
+        <xs:attribute name="Predicate" type="xs:string" use="required"/>        
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="Switch" type="SwitchStepType"/>
+  <xs:complexType name="SwitchStepType">
+    <xs:complexContent>
+      <xs:extension base="StepBaseType">
+        <xs:sequence>
+          <xs:element name="Case" type="CaseSubStepType" minOccurs="0" maxOccurs="unbounded"/>
+          <xs:element name="Default" type="StepGroupType" minOccurs="0" maxOccurs="1"/>
+        </xs:sequence>
+        <xs:attribute name="AllowMultipleFire" type="xs:boolean" use="optional" default="false"/>
+      </xs:extension>      
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:element name="Custom" type="CustomStepType"/>
+  <xs:complexType name="CustomStepType">
+    <xs:complexContent>
+      <xs:extension base="StepBaseType">
+        <xs:attribute name="AssemblyPath" type="xs:string" use="required"/>
+        <xs:attribute name="ClassName" type="xs:string" use="required"/>
+        <xs:attribute name="DisableTranLogging" type="xs:boolean" use="optional"/>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:element name="Serialize" type="SerializeStepType"/>
+  <xs:complexType name="SerializeStepType">
+    <xs:complexContent>
+      <xs:extension base="StepBaseType">
+        <xs:attribute name="Method" type="xs:string" use="required"/>
+        <xs:attribute name="DisableZeroByteArray" type="xs:boolean" use="optional"/>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:element name="OnTimeout" type="OnTimeoutStepType"/>
+  <xs:complexType name="OnTimeoutStepType">
+    <xs:complexContent>
+      <xs:extension base="StepBaseType">
+        <xs:attribute name="Event" type="xs:string" use="required"/>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:element name="OnMessagesetTimeout" type="OnMessagesetTimeoutStepType"/>
+  <xs:complexType name="OnMessagesetTimeoutStepType">
+    <xs:complexContent>
+      <xs:extension base="StepBaseType">
+        <xs:attribute name="Event" type="xs:string" use="required"/>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:element name="Exit" type="ExitStepType"/>
+  <xs:complexType name="ExitStepType">
+    <xs:complexContent>
+      <xs:extension base="StepBaseType">
+        <xs:attribute name="RaiseError" type="xs:boolean" use="optional"/>
+        <xs:attribute name="ErrorMessage" type="xs:string" use="optional"/>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:element name="Break" type="BreakStepType"/>
+  <xs:annotation>
+    <xs:documentation>Break from Switch and continue wuth flow in existing route path</xs:documentation> 
+  </xs:annotation>  
+  <xs:complexType name="BreakStepType">
+    <xs:complexContent>
+      <xs:extension base="StepBaseType">
+        <xs:attribute name="RaiseError" type="xs:boolean" use="optional"/>
+        <xs:attribute name="ErrorMessage" type="xs:string" use="optional"/>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:element name="AddRoutingField" type="AddRoutingFieldStepType"/>
+  <xs:complexType name="AddRoutingFieldStepType">
+    <xs:complexContent>
+      <xs:extension base="StepBaseType">
+        <xs:attribute name="FieldName" type="xs:string" use="required"/>
+        <xs:attribute name="FieldValue" type="xs:string" use="required"/>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType> 
+  
+  <xs:element name="WorkUnit" type="WorkUnitType" />
+  <xs:complexType name="WorkUnitType">
+    <xs:sequence>
+      <xs:element ref="Flow" minOccurs="0" maxOccurs="unbounded"/>
+      <xs:element ref="ExceptionHandling" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:element name="Flow" type="FlowType"/>
+  <xs:complexType name="FlowType">
+    <xs:complexContent>
+      <xs:extension base="StepGroupType">
+        <xs:attribute name="RoutingGroupName" type="xs:string" use="optional"/>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  
+  <xs:element name="ExceptionHandling" type="ExceptionHandlingType"/>
+  <xs:complexType name="ExceptionHandlingType">
+    <xs:sequence>
+      <xs:element ref="OnTimeOutException" minOccurs="0" maxOccurs="unbounded"/>
+      <xs:element ref="OnStepException" minOccurs="0" maxOccurs="unbounded"/>
+      <xs:element ref="OnServiceInactiveException" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:element name="OnTimeOutException" type="OnTimeOutExceptionType" />
+  <xs:complexType name="OnTimeOutExceptionType">
+    <xs:complexContent>
+      <xs:extension base="StepGroupType">        
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:element name="OnStepException" type="OnStepExceptionType" />
+  <xs:complexType name="OnStepExceptionType">
+    <xs:complexContent>
+      <xs:extension base="StepGroupType">
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:element name="OnServiceInactiveException" type="OnServiceInactiveExceptionType" />
+  <xs:complexType name="OnServiceInactiveExceptionType">
+    <xs:complexContent>
+      <xs:extension base="StepGroupType">
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+</xs:schema>

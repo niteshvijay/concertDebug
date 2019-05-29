@@ -1,0 +1,251 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\Microsoft.Diagnostics.Tracing.TraceEvent.2.0.23\build\Microsoft.Diagnostics.Tracing.TraceEvent.props" Condition="Exists('..\packages\Microsoft.Diagnostics.Tracing.TraceEvent.2.0.23\build\Microsoft.Diagnostics.Tracing.TraceEvent.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{E9FFD09D-B5B9-4F00-A9CB-33AAA3F2DFF9}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Deployment</RootNamespace>
+    <AssemblyName>Deployment</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Dia2Lib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Diagnostics.Tracing.TraceEvent.2.0.23\lib\net45\Dia2Lib.dll</HintPath>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="Finivation.Common.Caching, Version=1.2.513.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Finivation.Common.Caching.1.2.513\lib\net461\Finivation.Common.Caching.dll</HintPath>
+    </Reference>
+    <Reference Include="Finivation.Common.Collections, Version=1.2.513.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Finivation.Common.Collections.1.2.513\lib\net461\Finivation.Common.Collections.dll</HintPath>
+    </Reference>
+    <Reference Include="Finivation.Common.Core, Version=1.2.517.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Finivation.Common.Core.1.2.517\lib\net461\Finivation.Common.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Finivation.Common.Encryption, Version=1.2.517.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Finivation.Common.Encryption.1.2.517\lib\net461\Finivation.Common.Encryption.dll</HintPath>
+    </Reference>
+    <Reference Include="Finivation.Common.Helpers, Version=1.2.517.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Finivation.Common.Helpers.1.2.517\lib\net461\Finivation.Common.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="Finivation.Common.HttpClient, Version=1.2.517.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Finivation.Common.HttpClient.1.2.517\lib\net461\Finivation.Common.HttpClient.dll</HintPath>
+    </Reference>
+    <Reference Include="Finivation.Common.Logging, Version=1.2.517.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Finivation.Common.Logging.1.2.517\lib\net461\Finivation.Common.Logging.dll</HintPath>
+    </Reference>
+    <Reference Include="Finivation.Common.System, Version=1.2.517.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Finivation.Common.System.1.2.517\lib\net461\Finivation.Common.System.dll</HintPath>
+    </Reference>
+    <Reference Include="Finivation.Concert.Agent, Version=1.1.1267.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Finivation.Concert.Agent.1.1.1267\lib\net461\Finivation.Concert.Agent.dll</HintPath>
+    </Reference>
+    <Reference Include="Finivation.Concert.CommandLib, Version=1.1.1267.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Finivation.Concert.CommandLib.1.1.1267\lib\net461\Finivation.Concert.CommandLib.dll</HintPath>
+    </Reference>
+    <Reference Include="Finivation.Concert.Configuration.Helpers, Version=1.1.1267.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Finivation.Concert.Configuration.Helpers.1.1.1267\lib\net461\Finivation.Concert.Configuration.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="Finivation.Concert.EventTracing, Version=1.1.1278.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Finivation.Concert.EventTracing.1.1.1278\lib\net461\Finivation.Concert.EventTracing.dll</HintPath>
+    </Reference>
+    <Reference Include="Finivation.Concert.Message.Logging, Version=1.1.1267.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Finivation.Concert.Message.Logging.1.1.1267\lib\net461\Finivation.Concert.Message.Logging.dll</HintPath>
+    </Reference>
+    <Reference Include="Finivation.Concert.MessagingTools, Version=1.1.1267.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Finivation.Concert.MessagingTools.1.1.1267\lib\net461\Finivation.Concert.MessagingTools.dll</HintPath>
+    </Reference>
+    <Reference Include="Finivation.Concert.Routing, Version=1.1.1267.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Finivation.Concert.Routing.1.1.1267\lib\net461\Finivation.Concert.Routing.dll</HintPath>
+    </Reference>
+    <Reference Include="Finivation.Concert.RoutingService, Version=1.1.1267.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Finivation.Concert.RoutingService.1.1.1267\lib\net461\Finivation.Concert.RoutingService.dll</HintPath>
+    </Reference>
+    <Reference Include="Finivation.Concert.Service.FileSvc, Version=1.1.1267.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Finivation.Concert.Service.FileSvc.1.1.1267\lib\net461\Finivation.Concert.Service.FileSvc.dll</HintPath>
+    </Reference>
+    <Reference Include="Finivation.Concert.Service.FolderMonitoringService, Version=1.1.1267.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Finivation.Concert.Service.FolderMonitoringService.1.1.1267\lib\net461\Finivation.Concert.Service.FolderMonitoringService.dll</HintPath>
+    </Reference>
+    <Reference Include="Finivation.Concert.Service.HttpListenerSvc, Version=1.0.1268.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Finivation.Concert.Service.HttpListenerSvc.1.0.1268\lib\net461\Finivation.Concert.Service.HttpListenerSvc.dll</HintPath>
+    </Reference>
+    <Reference Include="Finivation.Concert.Service.HttpSvc, Version=1.1.1278.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Finivation.Concert.Service.HttpSvc.1.1.1278\lib\net461\Finivation.Concert.Service.HttpSvc.dll</HintPath>
+    </Reference>
+    <Reference Include="Finivation.Concert.Service.MonitoredQueueBasedServiceBase, Version=1.1.1278.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Finivation.Concert.Service.MonitoredQueueBasedServiceBase.1.1.1278\lib\net461\Finivation.Concert.Service.MonitoredQueueBasedServiceBase.dll</HintPath>
+    </Reference>
+    <Reference Include="Finivation.Concert.Service.MonitoredServiceBase, Version=1.1.1278.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Finivation.Concert.Service.MonitoredServiceBase.1.1.1278\lib\net461\Finivation.Concert.Service.MonitoredServiceBase.dll</HintPath>
+    </Reference>
+    <Reference Include="Finivation.Concert.Shared, Version=1.1.1278.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Finivation.Concert.Shared.1.1.1278\lib\net461\Finivation.Concert.Shared.dll</HintPath>
+    </Reference>
+    <Reference Include="Finivation.Concert.TraceEvent.EventSourceMonitor, Version=1.1.630.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Finivation.Concert.TraceEvent.EventSourceMonitor.1.1.630.0\lib\net461\Finivation.Concert.TraceEvent.EventSourceMonitor.dll</HintPath>
+    </Reference>
+    <Reference Include="Finivation.Integration.Cufx.Concert.v4, Version=4.0.29.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Finivation.Integration.Cufx.Concert.v4.4.0.29\lib\net461\Finivation.Integration.Cufx.Concert.v4.dll</HintPath>
+    </Reference>
+    <Reference Include="Finivation.Integration.Cufx.v4, Version=4.0.72.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Finivation.Integration.Cufx.v4.4.0.72.0\lib\net452\Finivation.Integration.Cufx.v4.dll</HintPath>
+    </Reference>
+    <Reference Include="Finivation.Messaging.Core, Version=1.0.541.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Finivation.Messaging.Core.1.0.541\lib\net461\Finivation.Messaging.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Finivation.Messaging.Helpers, Version=1.0.541.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Finivation.Messaging.Helpers.1.0.541\lib\net461\Finivation.Messaging.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="Finivation.Messaging.InMemory, Version=1.0.524.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Finivation.Messaging.InMemory.1.0.524\lib\net461\Finivation.Messaging.InMemory.dll</HintPath>
+    </Reference>
+    <Reference Include="Irony, Version=1.0.0.0, Culture=neutral, PublicKeyToken=ca48ace7223ead47, processorArchitecture=MSIL">
+      <HintPath>..\packages\Irony.0.9.1\lib\net40\Irony.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Diagnostics.FastSerialization, Version=1.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Diagnostics.Tracing.TraceEvent.2.0.23\lib\net45\Microsoft.Diagnostics.FastSerialization.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Diagnostics.Tracing.TraceEvent, Version=2.0.23.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Diagnostics.Tracing.TraceEvent.2.0.23\lib\net45\Microsoft.Diagnostics.Tracing.TraceEvent.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.IO.RecyclableMemoryStream, Version=1.2.2.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.IO.RecyclableMemoryStream.1.2.2\lib\net45\Microsoft.IO.RecyclableMemoryStream.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.EnterpriseLibrary.Common, Version=6.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\EnterpriseLibrary.Common.6.0.1304.0\lib\NET45\Microsoft.Practices.EnterpriseLibrary.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.EnterpriseLibrary.ExceptionHandling, Version=6.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\EnterpriseLibrary.ExceptionHandling.6.0.1304.0\lib\NET45\Microsoft.Practices.EnterpriseLibrary.ExceptionHandling.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.EnterpriseLibrary.ExceptionHandling.Logging, Version=6.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\EnterpriseLibrary.ExceptionHandling.Logging.6.0.1304.0\lib\NET45\Microsoft.Practices.EnterpriseLibrary.ExceptionHandling.Logging.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.EnterpriseLibrary.Logging, Version=6.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\EnterpriseLibrary.Logging.6.0.1304.0\lib\NET45\Microsoft.Practices.EnterpriseLibrary.Logging.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Rest.ClientRuntime, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Rest.ClientRuntime.2.3.8\lib\net452\Microsoft.Rest.ClientRuntime.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Rest.ClientRuntime.Azure, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Rest.ClientRuntime.Azure.3.3.8\lib\net452\Microsoft.Rest.ClientRuntime.Azure.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=11.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.11.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="NLog, Version=4.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
+      <HintPath>..\packages\NLog.4.4.12\lib\net45\NLog.dll</HintPath>
+    </Reference>
+    <Reference Include="OSExtensions, Version=1.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Diagnostics.Tracing.TraceEvent.2.0.23\lib\net45\OSExtensions.dll</HintPath>
+    </Reference>
+    <Reference Include="Quartz, Version=3.0.7.0, Culture=neutral, PublicKeyToken=f6b8c98a402cc8a4, processorArchitecture=MSIL">
+      <HintPath>..\packages\Quartz.3.0.7\lib\net452\Quartz.dll</HintPath>
+    </Reference>
+    <Reference Include="StackExchange.Redis, Version=1.2.6.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\StackExchange.Redis.1.2.6\lib\net46\StackExchange.Redis.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.IO.Compression" />
+    <Reference Include="System.Runtime.Remoting" />
+    <Reference Include="System.Threading.Tasks.Dataflow, Version=4.5.24.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Tpl.Dataflow.4.5.24\lib\portable-net45+win8+wpa81\System.Threading.Tasks.Dataflow.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="TraceReloggerLib, Version=0.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Diagnostics.Tracing.TraceEvent.2.0.23\lib\net45\TraceReloggerLib.dll</HintPath>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Main.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="concert-data-file-HttpSvc.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="concert-data-file.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Incoming.json" />
+    <None Include="packages.config">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="RoutingScript.xsd">
+      <SubType>Designer</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Readme.txt" />
+    <Content Include="TraceEvent.ReadMe.txt" />
+    <Content Include="TraceEvent.ReleaseNotes.txt" />
+    <Content Include="WSDL\binding.xml" />
+    <Content Include="XMLFile1.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\TransformerProj1\TransformerProj1.csproj">
+      <Project>{3e47e84d-c8f8-4243-bf77-703388d499df}</Project>
+      <Name>TransformerProj1</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+  <PropertyGroup>
+    <!-- Setting AutoUnifyAssemblyReferences to false will allow the ResolveAssemblyReferences task to 
+    create warnings when detecting version missmatches among references.
+    -->
+    <AutoUnifyAssemblyReferences>false</AutoUnifyAssemblyReferences>
+  </PropertyGroup>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\Microsoft.Diagnostics.Tracing.TraceEvent.2.0.23\build\Microsoft.Diagnostics.Tracing.TraceEvent.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.Diagnostics.Tracing.TraceEvent.2.0.23\build\Microsoft.Diagnostics.Tracing.TraceEvent.props'))" />
+    <Error Condition="!Exists('..\packages\Finivation.Concert.Shared.1.1.1278\Build\Finivation.Concert.Shared.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Finivation.Concert.Shared.1.1.1278\Build\Finivation.Concert.Shared.targets'))" />
+  </Target>
+  <Import Project="..\packages\Finivation.Concert.Shared.1.1.1278\Build\Finivation.Concert.Shared.targets" Condition="Exists('..\packages\Finivation.Concert.Shared.1.1.1278\Build\Finivation.Concert.Shared.targets')" />
+</Project>

@@ -1,0 +1,14 @@
+{
+  "messageContext": {
+    "requestId": "d437fe57-43c2-400f-933b-6a02267b459etest",
+    "vendorId": " QM0zue70w4Wdmqe"
+  },
+  "accountList": {
+    "account": [
+      {
+        "accountNickName": "newNickname",
+        "accountId": "100100113043"
+      }
+    ]
+  }
+}
