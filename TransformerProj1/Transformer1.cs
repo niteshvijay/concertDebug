@@ -48,8 +48,13 @@ namespace TransformerProj1
                     }
                 },
             };
-            
-            var sqlRequestBytes = SerializationHelper.SerializeXmlObjectToBytes(sqlRequest);
+
+            var sqlRequestv2 = new SqlRequest
+            {
+                SqlOrStoredProcName = "INSERT INTO [dbo].[testtable]([col1],[col2])VALUES('in1','in11')"
+            };
+
+            var sqlRequestBytes = SerializationHelper.SerializeXmlObjectToBytes(sqlRequestv2);
             to.Data = sqlRequestBytes;
             to.ContentToLog = sqlRequestBytes;
             
