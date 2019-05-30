@@ -8,6 +8,8 @@ using System.Collections.Generic;
 using Finivation.Concert.Shared;
 using System.Linq;
 using System.Text;
+using System.Data;
+using Finivation.Common.Helpers.Serialization;
 
 namespace TransformerProj1
 {
@@ -26,11 +28,34 @@ namespace TransformerProj1
         /// <returns>null (at present)</returns>
         public override TransformResult Transform(CMessage from, CMessage to, Dictionary<string, string> option, bool populateToMessageMatchingInfo = false)
         {
-
             Logger.Trace(null, "Transformer 1 called");
-            to.Data = Encoding.UTF8.GetBytes("Response from Transformer1");
-            to.AddHttpHeader("HABC", "transfValueA");
-            to.AddHttpHeader("H1", "transfValueB");
+            var sqlRequest = new SqlRequest
+            {
+                SqlOrStoredProcName = "[dbo].[testinsert]",
+                Parameters = new List<DbField>
+                {
+                    new DbField
+                    {
+                        Name = "@val1",
+                        Value = "testcode1",
+                        Type = SqlDbType.NVarChar
+                    },
+                    new DbField
+                    {
+                        Name = "@val1",
+                        Value = "testcode2",
+                        Type = SqlDbType.NVarChar
+                    }
+                },
+            };
+            
+            var sqlRequestBytes = SerializationHelper.SerializeXmlObjectToBytes(sqlRequest);
+            to.Data = sqlRequestBytes;
+            to.ContentToLog = sqlRequestBytes;
+            
+            //to.Data = Encoding.UTF8.GetBytes("Response from Transformer1");
+            //to.AddHttpHeader("HABC", "transfValueA");
+            //to.AddHttpHeader("H1", "transfValueB");
 
             return null;    // Currently returned TransformResult is not used so null is okay
         }
