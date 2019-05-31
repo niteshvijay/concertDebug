@@ -16,7 +16,7 @@ namespace TransformerProj1
     /// <summary>
     /// Transformer class
     /// </summary>
-	public class Transformer1 : TransformerBase
+	public class Transformer2 : TransformerBase
     {
         /// <summary>
         /// Transforms the original input 'from' message, and stores the result in the output 'to' message
@@ -28,40 +28,13 @@ namespace TransformerProj1
         /// <returns>null (at present)</returns>
         public override TransformResult Transform(CMessage from, CMessage to, Dictionary<string, string> option, bool populateToMessageMatchingInfo = false)
         {
-            Logger.Trace(null, "Transformer 1 called");
-            var sqlRequest = new SqlRequest
-            {
-                SqlOrStoredProcName = "[dbo].[testinsert]",
-                Parameters = new List<DbField>
-                {
-                    new DbField
-                    {
-                        Name = "val1",
-                        Value = "check1",
-                        Type = SqlDbType.NVarChar
-                    },
-                    new DbField
-                    {
-                        Name = "val2",
-                        Value = "check1",
-                        Type = SqlDbType.NVarChar
-                    }
-                },
-                OutputParameters = new List<DbField> {
-                    new DbField {
-                        Name = "ResponseCode",
-                        Type = SqlDbType.Int
-                    }
-                }
-            };
+            Logger.Trace(null, "Transformer 2 called");
+            var sqlResponse = SerializationHelper.DeserializeXmlObjectFromBytes<SqlResponse>(from.Data);
 
-
-            var sqlRequestBytes = SerializationHelper.SerializeXmlObjectToBytes(sqlRequest);
-            to.Data = sqlRequestBytes;
+            //to.Data = Encoding.UTF8.GetBytes("Response from Transformer2");
+            to.Data = from.Data;
             to.MatchingInfo = Guid.NewGuid().ToString();
-            to.ContentToLog = sqlRequestBytes;
-            
-            //to.Data = Encoding.UTF8.GetBytes("Response from Transformer1");
+            to.ExtraHelperInfo["testname"] = "testmessage1";
             //to.AddHttpHeader("HABC", "transfValueA");
             //to.AddHttpHeader("H1", "transfValueB");
 
