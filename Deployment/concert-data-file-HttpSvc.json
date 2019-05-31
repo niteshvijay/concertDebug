@@ -16,7 +16,7 @@
         "serviceId": "00000000-0000-0000-0000-000000000000",
         "name": "Routing Service",
         "inProcess": "true",
-        "routes": "<Routes xmlns=\"http://finivation.com/concert/RoutingScript.xsd\"><Route> <From ServiceName=\"HttpListenerService\" /> <Transform AssemblyPath=\"TransformerProj1.dll\" ClassName=\"TransformerProj1.Transformer1\" Name=\"MyTransformer\" /><To ServiceName=\"DBService\" /><To ServiceName=\"HttpListenerService\" />  </Route></Routes>",
+        "routes": "<Routes xmlns=\"http://finivation.com/concert/RoutingScript.xsd\"><Route> <From ServiceName=\"HttpListenerService\" /> <Transform AssemblyPath=\"TransformerProj1.dll\" ClassName=\"TransformerProj1.Transformer1\" Name=\"MyTransformer\" /><To ServiceName=\"DBService\" /></Route></Routes>",
         "messaging": { "queueConnStr": "" },
         "serviceType": {
           "name": "Routing Service",

@@ -101,9 +101,6 @@
     <Reference Include="Finivation.Concert.Service.FolderMonitoringService, Version=1.1.1267.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Finivation.Concert.Service.FolderMonitoringService.1.1.1267\lib\net461\Finivation.Concert.Service.FolderMonitoringService.dll</HintPath>
     </Reference>
-    <Reference Include="Finivation.Concert.Service.GeneralDatabaseService, Version=1.1.1267.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Finivation.Concert.Service.GeneralDatabaseService.1.1.1267\lib\net461\Finivation.Concert.Service.GeneralDatabaseService.dll</HintPath>
-    </Reference>
     <Reference Include="Finivation.Concert.Service.HttpListenerSvc, Version=1.0.1268.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Finivation.Concert.Service.HttpListenerSvc.1.0.1268\lib\net461\Finivation.Concert.Service.HttpListenerSvc.dll</HintPath>
     </Reference>

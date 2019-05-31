@@ -36,25 +36,27 @@ namespace TransformerProj1
                 {
                     new DbField
                     {
-                        Name = "@val1",
-                        Value = "testcode1",
+                        Name = "val1",
+                        Value = "check1",
                         Type = SqlDbType.NVarChar
                     },
                     new DbField
                     {
-                        Name = "@val1",
-                        Value = "testcode2",
+                        Name = "val2",
+                        Value = "check1",
                         Type = SqlDbType.NVarChar
                     }
                 },
+                OutputParameters = new List<DbField> {
+                    new DbField {
+                        Name = "ResponseCode",
+                        Type = SqlDbType.Int
+                    }
+                }
             };
 
-            var sqlRequestv2 = new SqlRequest
-            {
-                SqlOrStoredProcName = "INSERT INTO [dbo].[testtable]([col1],[col2])VALUES('in1','in11')"
-            };
 
-            var sqlRequestBytes = SerializationHelper.SerializeXmlObjectToBytes(sqlRequestv2);
+            var sqlRequestBytes = SerializationHelper.SerializeXmlObjectToBytes(sqlRequest);
             to.Data = sqlRequestBytes;
             to.ContentToLog = sqlRequestBytes;
             
